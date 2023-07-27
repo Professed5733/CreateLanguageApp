@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Form.module.css";
 import usePut from "../hooks/usePut";
+import useDel from "../hooks/useDel";
 
 const OverLay = (props) => {
   const languages = props.languages;
   const addLanguageRef = useRef();
   const putRequest = usePut();
+  const delLanguage = useDel();
 
   const addLanguage = async () => {
     const res = await putRequest(
@@ -21,6 +23,19 @@ const OverLay = (props) => {
       props.setShowLanguageForm(false);
     } else {
       console.log("Error adding new language");
+    }
+  };
+
+  const removeLanguage = async (languageId) => {
+    const res = await delLanguage(
+      import.meta.env.VITE_SERVER + "/hw/languages/" + languageId
+    );
+
+    if (res.status === 200) {
+      addLanguageRef.current.value = "";
+      props.getLanguages();
+    } else {
+      console.log("Error removing language");
     }
   };
 
@@ -61,7 +76,12 @@ const OverLay = (props) => {
           <div className="row  justify-content-center" key={language.language}>
             <div className="col-md-3">{language.language}</div>
             <div className="col-md-3">{language.created_at}</div>
-            <button className="col-md-3">delete</button>
+            <button
+              className="col-md-3"
+              onClick={() => removeLanguage(language.language)}
+            >
+              delete
+            </button>
           </div>
         ))}
       </div>

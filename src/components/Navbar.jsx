@@ -20,7 +20,7 @@ const Navbar = (props) => {
             className="btn btn-outline-success"
             onClick={() => props.setShowLanguageForm(true)}
           >
-            Add New Language
+            Manage Language
           </button>
         </div>
       </div>

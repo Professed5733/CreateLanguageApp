@@ -10,6 +10,7 @@ const useDel = () => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
+      return res;
     } catch (error) {
       throw new Error("Error performing DELETE request: " + error.message);
     }
