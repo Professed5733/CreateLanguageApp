@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import useGet from "../hooks/useGet";
 
 const LanguageSelector = (props) => {
-  const fetchLanguages = useGet();
-  const [languages, setLanguages] = useState([]);
+  const languages = props.languages;
+  // const fetchLanguages = useGet();
+  // const [languages, setLanguages] = useState([]);
 
-  useEffect(() => {
-    fetchLanguages(import.meta.env.VITE_SERVER + "/hw/languages")
-      .then((data) => setLanguages(data))
-      .catch((error) => console.error(error));
-  }, []);
+  // useEffect(() => {
+  //   fetchLanguages(import.meta.env.VITE_SERVER + "/hw/languages")
+  //     .then((data) => setLanguages(data))
+  //     .catch((error) => console.error(error));
+  // }, []);
 
   return (
     <form>

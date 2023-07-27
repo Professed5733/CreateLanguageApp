@@ -5,6 +5,7 @@ import UserLanguages from "./UserLanguages";
 import LanguageSelector from "./LanguageSelector";
 
 const Card = (props) => {
+  const languages = props.languages;
   const { postRequest } = usePost();
   const [userLanguages, setUserLanguages] = useState([]);
 
@@ -37,7 +38,7 @@ const Card = (props) => {
         {userLanguages.map((language, idx) => {
           return <UserLanguages key={idx} language={language}></UserLanguages>;
         })}
-        <LanguageSelector></LanguageSelector>
+        <LanguageSelector languages={languages}></LanguageSelector>
       </div>
     </div>
   );

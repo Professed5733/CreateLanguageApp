@@ -3,14 +3,15 @@ import styles from "./Form.module.css";
 import useGet from "../hooks/useGet";
 
 const OverLay = (props) => {
-  const fetchLanguages = useGet();
-  const [languages, setLanguages] = useState([]);
+  const languages = props.languages;
+  //   const fetchLanguages = useGet();
+  //   const [languages, setLanguages] = useState([]);
 
-  useEffect(() => {
-    fetchLanguages(import.meta.env.VITE_SERVER + "/hw/languages")
-      .then((data) => setLanguages(data))
-      .catch((error) => console.error(error));
-  }, []);
+  //   useEffect(() => {
+  //     fetchLanguages(import.meta.env.VITE_SERVER + "/hw/languages")
+  //       .then((data) => setLanguages(data))
+  //       .catch((error) => console.error(error));
+  //   }, []);
 
   return (
     <div className={styles.backdrop}>
@@ -54,10 +55,10 @@ const OverLay = (props) => {
   );
 };
 
-const NewLanguageForm = () => {
+const NewLanguageForm = (props) => {
   return (
     <>
-      <OverLay></OverLay>
+      <OverLay languages={props.languages}></OverLay>
     </>
   );
 };

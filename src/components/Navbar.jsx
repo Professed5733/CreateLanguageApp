@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Navbar.module.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -10,8 +10,18 @@ const Navbar = () => {
         </a>
 
         <div className="ms-auto">
-          <button className="btn btn-outline-success">Add New User</button>
-          <button className="btn btn-outline-success">Add New Language</button>
+          <button
+            className="btn btn-outline-success"
+            onClick={() => props.setShowUserForm(true)}
+          >
+            Add New User
+          </button>
+          <button
+            className="btn btn-outline-success"
+            onClick={() => props.setShowLanguageForm(true)}
+          >
+            Add New Language
+          </button>
         </div>
       </div>
     </nav>
