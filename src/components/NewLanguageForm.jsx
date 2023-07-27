@@ -33,7 +33,12 @@ const OverLay = (props) => {
         <div className="row">
           <div className="col-md-3"></div>
           <button className="col-md-3">Add</button>
-          <button className="col-md-3">Cancel</button>
+          <button
+            className="col-md-3"
+            onClick={() => props.setShowLanguageForm(false)}
+          >
+            Cancel
+          </button>
           <div className="col-md-3"></div>
         </div>
 
@@ -58,7 +63,10 @@ const OverLay = (props) => {
 const NewLanguageForm = (props) => {
   return (
     <>
-      <OverLay languages={props.languages}></OverLay>
+      <OverLay
+        setShowLanguageForm={props.setShowLanguageForm}
+        languages={props.languages}
+      ></OverLay>
     </>
   );
 };

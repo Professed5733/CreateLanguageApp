@@ -31,9 +31,7 @@ const Display = () => {
   return (
     <>
       <Navbar
-        showLanguageForm={showLanguageForm}
         setShowLanguageForm={setShowLanguageForm}
-        showUserForm={showUserForm}
         setShowUserForm={setShowUserForm}
       ></Navbar>
       <div className="container">
@@ -51,10 +49,15 @@ const Display = () => {
         })}
       </div>
       {showLanguageForm && (
-        <NewLanguageForm languages={languages}></NewLanguageForm>
+        <NewLanguageForm
+          setShowLanguageForm={setShowLanguageForm}
+          languages={languages}
+        ></NewLanguageForm>
       )}
       {/* <UpdateUserForm></UpdateUserForm> */}
-      {showUserForm && <NewUserForm></NewUserForm>}
+      {showUserForm && (
+        <NewUserForm setShowUserForm={setShowUserForm}></NewUserForm>
+      )}
     </>
   );
 };

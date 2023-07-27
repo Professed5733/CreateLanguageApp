@@ -44,7 +44,12 @@ const OverLay = (props) => {
         <div className="row">
           <div className="col-md-3"></div>
           <button className="col-md-3">Add</button>
-          <button className="col-md-3">cancel</button>
+          <button
+            className="col-md-3"
+            onClick={() => props.setShowUserForm(false)}
+          >
+            cancel
+          </button>
           <div className="col-md-3"></div>
         </div>
       </div>
@@ -52,10 +57,10 @@ const OverLay = (props) => {
   );
 };
 
-const NewUserForm = () => {
+const NewUserForm = (props) => {
   return (
     <div>
-      <OverLay></OverLay>
+      <OverLay setShowUserForm={props.setShowUserForm}></OverLay>
     </div>
   );
 };
