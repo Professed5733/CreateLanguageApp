@@ -1,11 +1,7 @@
-import { useState } from "react";
+import React from "react";
 
-const useDelete = (url) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const deleteRequest = async () => {
-    setLoading(true);
+const useDel = () => {
+  const deleteRequest = async (url) => {
     try {
       const res = await fetch(url, {
         method: "DELETE",
@@ -14,14 +10,12 @@ const useDelete = (url) => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
-      setLoading(false);
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      throw new Error("Error performing DELETE request: " + error.message);
     }
   };
 
-  return { deleteRequest, loading, error };
+  return deleteRequest;
 };
 
-export default useDelete;
+export default useDel;

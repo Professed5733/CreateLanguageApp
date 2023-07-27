@@ -1,29 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-const useGet = (url) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await res.json();
-        setData(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
+const useGet = () => {
+  const fetchData = async (url) => {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
-    fetchData();
-  }, [url]);
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      throw new Error("Error fetching data: " + error.message);
+    }
+  };
 
-  return { data, loading, error };
+  return fetchData;
 };
 
 export default useGet;

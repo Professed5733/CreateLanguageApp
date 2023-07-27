@@ -1,11 +1,7 @@
-import { useState } from "react";
+import React from "react";
 
-const usePut = (url) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const putRequest = async (data) => {
-    setLoading(true);
+const usePut = () => {
+  const putRequest = async (url, data) => {
     try {
       const res = await fetch(url, {
         method: "PUT",
@@ -15,14 +11,12 @@ const usePut = (url) => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
-      setLoading(false);
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      throw new Error("Error performing PUT request: " + error.message);
     }
   };
 
-  return { putRequest, loading, error };
+  return putRequest;
 };
 
 export default usePut;

@@ -1,11 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const usePost = (url) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const postRequest = async (data) => {
-    setLoading(true);
+const usePost = () => {
+  const postRequest = async (url, data) => {
     try {
       const res = await fetch(url, {
         method: "POST",
@@ -15,14 +11,13 @@ const usePost = (url) => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
-      setLoading(false);
+      return await res.json(); // Return the JSON data from the response
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      throw new Error("Error performing POST request: " + error.message);
     }
   };
 
-  return { postRequest, loading, error };
+  return { postRequest };
 };
 
 export default usePost;
