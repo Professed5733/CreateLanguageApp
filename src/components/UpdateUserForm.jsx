@@ -13,7 +13,7 @@ const OverLay = (props) => {
           <div className="col-md-3">Name</div>
           <input
             type="text"
-            defaultValue={props.title}
+            defaultValue={props.name}
             className="col-md-3"
           ></input>
           <div className="col-md-3"></div>
@@ -24,7 +24,7 @@ const OverLay = (props) => {
           <div className="col-md-3">Age</div>
           <input
             type="text"
-            defaultValue={props.author}
+            defaultValue={props.age}
             className="col-md-3"
           ></input>
           <div className="col-md-3"></div>
@@ -35,7 +35,7 @@ const OverLay = (props) => {
           <div className="col-md-3">Country</div>
           <input
             type="text"
-            defaultValue={props.yearPublished}
+            defaultValue={props.country}
             className="col-md-3"
           ></input>
           <div className="col-md-3"></div>
@@ -44,7 +44,12 @@ const OverLay = (props) => {
         <div className="row">
           <div className="col-md-3"></div>
           <button className="col-md-3">update</button>
-          <button className="col-md-3">cancel</button>
+          <button
+            className="col-md-3"
+            onClick={() => props.setShowUpdateForm(false)}
+          >
+            cancel
+          </button>
           <div className="col-md-3"></div>
         </div>
       </div>
@@ -52,10 +57,15 @@ const OverLay = (props) => {
   );
 };
 
-const UpdateUserForm = () => {
+const UpdateUserForm = (props) => {
   return (
     <div>
-      <OverLay></OverLay>
+      <OverLay
+        name={props.name}
+        age={props.age}
+        country={props.country}
+        setShowUpdateForm={props.setShowUpdateForm}
+      ></OverLay>
     </div>
   );
 };

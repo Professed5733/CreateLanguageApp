@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import Card from "./Card";
 import useGet from "../hooks/useGet";
 import NewLanguageForm from "./NewLanguageForm";
-import UpdateUserForm from "./UpdateUserForm";
 import NewUserForm from "./NewUserForm";
 
 const Display = () => {
@@ -54,7 +53,6 @@ const Display = () => {
           languages={languages}
         ></NewLanguageForm>
       )}
-      {/* <UpdateUserForm></UpdateUserForm> */}
       {showUserForm && (
         <NewUserForm setShowUserForm={setShowUserForm}></NewUserForm>
       )}

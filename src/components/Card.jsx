@@ -3,11 +3,13 @@ import styles from "./Card.module.css";
 import usePost from "../hooks/usePost";
 import UserLanguages from "./UserLanguages";
 import LanguageSelector from "./LanguageSelector";
+import UpdateUserForm from "./UpdateUserForm";
 
 const Card = (props) => {
   const languages = props.languages;
   const { postRequest } = usePost();
   const [userLanguages, setUserLanguages] = useState([]);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   useEffect(() => {
     postRequest(import.meta.env.VITE_SERVER + "/hw/users/languages", {
@@ -32,7 +34,9 @@ const Card = (props) => {
         {props.country}
       </div>
       <button className="col-sm-1">Delete</button>
-      <button className="col-sm-1">Update</button>
+      <button className="col-sm-1" onClick={() => setShowUpdateForm(true)}>
+        Update
+      </button>
       <hr></hr>
       <div>
         {userLanguages.map((language, idx) => {
@@ -40,6 +44,14 @@ const Card = (props) => {
         })}
         <LanguageSelector languages={languages}></LanguageSelector>
       </div>
+      {showUpdateForm && (
+        <UpdateUserForm
+          name={props.name}
+          age={props.age}
+          country={props.country}
+          setShowUpdateForm={setShowUpdateForm}
+        ></UpdateUserForm>
+      )}
     </div>
   );
 };
