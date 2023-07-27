@@ -5,6 +5,7 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
+        <h2>Update User Details</h2>
         <br />
         <br />
         <div className="row">

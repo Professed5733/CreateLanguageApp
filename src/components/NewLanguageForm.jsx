@@ -15,6 +15,7 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
+        <h2>Language Form</h2>
         <br />
         <br />
         <div className="row">
@@ -38,12 +39,14 @@ const OverLay = (props) => {
         <div className="row  justify-content-center">
           <div className="col-md-3">Language</div>
           <div className="col-md-3">Created At</div>
+          <div className="col-md-3"></div>
         </div>
 
         {languages.map((language) => (
           <div className="row  justify-content-center" key={language.language}>
             <div className="col-md-3">{language.language}</div>
             <div className="col-md-3">{language.created_at}</div>
+            <button className="col-md-3">delete</button>
           </div>
         ))}
       </div>
