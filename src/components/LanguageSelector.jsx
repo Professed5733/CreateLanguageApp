@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useGet from "../hooks/useGet";
 
-const LanguageSelector = () => {
+const LanguageSelector = (props) => {
   const fetchLanguages = useGet();
   const [languages, setLanguages] = useState([]);
 

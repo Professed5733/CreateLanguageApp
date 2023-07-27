@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Card from "./Card";
 import useGet from "../hooks/useGet";
 import NewLanguageForm from "./NewLanguageForm";
+import UpdateUserForm from "./UpdateUserForm";
 
 const Display = () => {
   const fetchData = useGet();
@@ -17,7 +18,7 @@ const Display = () => {
 
   return (
     <>
-      {/* <Navbar></Navbar>
+      <Navbar></Navbar>
       <div className="container">
         {user.map((item) => {
           return (
@@ -30,8 +31,8 @@ const Display = () => {
             ></Card>
           );
         })}
-      </div> */}
-      <NewLanguageForm></NewLanguageForm>
+      </div>
+      {/* <NewLanguageForm></NewLanguageForm> */}
     </>
   );
 };
