@@ -63,7 +63,10 @@ const Display = () => {
         ></NewLanguageForm>
       )}
       {showUserForm && (
-        <NewUserForm setShowUserForm={setShowUserForm}></NewUserForm>
+        <NewUserForm
+          getUser={getUser}
+          setShowUserForm={setShowUserForm}
+        ></NewUserForm>
       )}
     </>
   );
