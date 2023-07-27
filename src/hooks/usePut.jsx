@@ -1,5 +1,3 @@
-import React from "react";
-
 const usePut = () => {
   const putRequest = async (url, data) => {
     try {
@@ -11,6 +9,7 @@ const usePut = () => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
+      return res;
     } catch (error) {
       throw new Error("Error performing PUT request: " + error.message);
     }

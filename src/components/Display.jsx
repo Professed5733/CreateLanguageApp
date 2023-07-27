@@ -6,25 +6,32 @@ import NewLanguageForm from "./NewLanguageForm";
 import NewUserForm from "./NewUserForm";
 
 const Display = () => {
-  const fetchData = useGet();
   const [user, setUser] = useState([]);
-
-  const fetchLanguages = useGet();
   const [languages, setLanguages] = useState([]);
+  const fetchUser = useGet();
+  const fetchLanguages = useGet();
 
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showUserForm, setShowUserForm] = useState(false);
 
-  useEffect(() => {
-    fetchData(import.meta.env.VITE_SERVER + "/hw/users")
-      .then((data) => setUser(data))
-      .catch((error) => console.error(error));
-  }, []);
+  const getUser = async () => {
+    const data = await fetchUser(import.meta.env.VITE_SERVER + "/hw/users");
+    setUser(data);
+  };
 
   useEffect(() => {
-    fetchLanguages(import.meta.env.VITE_SERVER + "/hw/languages")
-      .then((data) => setLanguages(data))
-      .catch((error) => console.error(error));
+    getUser();
+  }, []);
+
+  const getLanguages = async () => {
+    const data = await fetchLanguages(
+      import.meta.env.VITE_SERVER + "/hw/languages"
+    );
+    setLanguages(data);
+  };
+
+  useEffect(() => {
+    getLanguages();
   }, []);
 
   return (
@@ -50,7 +57,9 @@ const Display = () => {
       {showLanguageForm && (
         <NewLanguageForm
           setShowLanguageForm={setShowLanguageForm}
+          getLanguages={getLanguages}
           languages={languages}
+          setLanguages={setLanguages}
         ></NewLanguageForm>
       )}
       {showUserForm && (

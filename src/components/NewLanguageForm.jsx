@@ -1,17 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./Form.module.css";
-import useGet from "../hooks/useGet";
+import usePut from "../hooks/usePut";
 
 const OverLay = (props) => {
   const languages = props.languages;
-  //   const fetchLanguages = useGet();
-  //   const [languages, setLanguages] = useState([]);
+  const addLanguageRef = useRef();
+  const putRequest = usePut();
 
-  //   useEffect(() => {
-  //     fetchLanguages(import.meta.env.VITE_SERVER + "/hw/languages")
-  //       .then((data) => setLanguages(data))
-  //       .catch((error) => console.error(error));
-  //   }, []);
+  const addLanguage = async () => {
+    const res = await putRequest(
+      import.meta.env.VITE_SERVER + "/hw/languages",
+      {
+        language: addLanguageRef.current.value,
+      }
+    );
+
+    if (res.status === 200) {
+      addLanguageRef.current.value = "";
+      props.getLanguages();
+      props.setShowLanguageForm(false);
+    } else {
+      console.log("Error adding new language");
+    }
+  };
 
   return (
     <div className={styles.backdrop}>
@@ -22,17 +33,15 @@ const OverLay = (props) => {
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-3">Language</div>
-          <input
-            type="text"
-            defaultValue={props.title}
-            className="col-md-3"
-          ></input>
+          <input type="text" className="col-md-3" ref={addLanguageRef}></input>
           <div className="col-md-3"></div>
         </div>
 
         <div className="row">
           <div className="col-md-3"></div>
-          <button className="col-md-3">Add</button>
+          <button className="col-md-3" onClick={addLanguage}>
+            Add
+          </button>
           <button
             className="col-md-3"
             onClick={() => props.setShowLanguageForm(false)}
@@ -65,7 +74,9 @@ const NewLanguageForm = (props) => {
     <>
       <OverLay
         setShowLanguageForm={props.setShowLanguageForm}
+        getLanguages={props.getLanguages}
         languages={props.languages}
+        setLanguages={props.setLanguages}
       ></OverLay>
     </>
   );
