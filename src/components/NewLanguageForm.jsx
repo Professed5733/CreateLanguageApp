@@ -20,7 +20,7 @@ const OverLay = (props) => {
     if (res.status === 200) {
       addLanguageRef.current.value = "";
       props.getLanguages();
-      props.setShowLanguageForm(false);
+      // props.setShowLanguageForm(false);
     } else {
       console.log("Error adding new language");
     }
@@ -48,7 +48,12 @@ const OverLay = (props) => {
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-3">Language</div>
-          <input type="text" className="col-md-3" ref={addLanguageRef}></input>
+          <input
+            type="text"
+            className="col-md-3"
+            ref={addLanguageRef}
+            required
+          ></input>
           <div className="col-md-3"></div>
         </div>
 

@@ -35,21 +35,36 @@ const OverLay = (props) => {
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-3">Name</div>
-          <input type="text" className="col-md-3" ref={userNameRef}></input>
+          <input
+            type="text"
+            className="col-md-3"
+            ref={userNameRef}
+            required
+          ></input>
           <div className="col-md-3"></div>
         </div>
 
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-3">Age</div>
-          <input type="text" className="col-md-3" ref={userAgeRef}></input>
+          <input
+            type="number"
+            className="col-md-3"
+            ref={userAgeRef}
+            required
+          ></input>
           <div className="col-md-3"></div>
         </div>
 
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-3">Country</div>
-          <input type="text" className="col-md-3" ref={userCountryRef}></input>
+          <input
+            type="text"
+            className="col-md-3"
+            ref={userCountryRef}
+            required
+          ></input>
           <div className="col-md-3"></div>
         </div>
 
@@ -62,7 +77,7 @@ const OverLay = (props) => {
             className="col-md-3"
             onClick={() => props.setShowUserForm(false)}
           >
-            cancel
+            Cancel
           </button>
           <div className="col-md-3"></div>
         </div>

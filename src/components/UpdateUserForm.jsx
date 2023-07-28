@@ -41,6 +41,7 @@ const OverLay = (props) => {
             defaultValue={props.name}
             className="col-md-3"
             ref={updateNameRef}
+            required
           ></input>
           <div className="col-md-3"></div>
         </div>
@@ -49,10 +50,11 @@ const OverLay = (props) => {
           <div className="col-md-3"></div>
           <div className="col-md-3">Age</div>
           <input
-            type="text"
+            type="number"
             defaultValue={props.age}
             className="col-md-3"
             ref={updateAgeRef}
+            required
           ></input>
           <div className="col-md-3"></div>
         </div>
@@ -65,6 +67,7 @@ const OverLay = (props) => {
             defaultValue={props.country}
             className="col-md-3"
             ref={updateCountryRef}
+            required
           ></input>
           <div className="col-md-3"></div>
         </div>

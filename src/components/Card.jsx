@@ -41,22 +41,32 @@ const Card = (props) => {
 
   const removeAll = async () => {
     if (userLanguages.length === 0) {
-      await removeUser();
+      const confirmed = window.confirm(
+        "Are you sure you want to delete this user?"
+      );
+      if (confirmed) {
+        await removeUser();
+      }
       return;
     }
 
-    for (const item of userLanguages) {
-      const res = await delUserLanguagesAll(
-        import.meta.env.VITE_SERVER + "/hw/users/languages",
-        {
-          user_id: props.id,
-          language: item,
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (confirmed) {
+      for (const item of userLanguages) {
+        const res = await delUserLanguagesAll(
+          import.meta.env.VITE_SERVER + "/hw/users/languages",
+          {
+            user_id: props.id,
+            language: item,
+          }
+        );
+        if (res.status === 200) {
+          await removeUser();
+        } else {
+          console.log("Error removing language");
         }
-      );
-      if (res.status === 200) {
-        await removeUser();
-      } else {
-        console.log("Error removing language");
       }
     }
   };
