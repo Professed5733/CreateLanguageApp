@@ -46,7 +46,14 @@ const Card = (props) => {
       <hr></hr>
       <div>
         {userLanguages.map((language, idx) => {
-          return <UserLanguages key={idx} language={language}></UserLanguages>;
+          return (
+            <UserLanguages
+              key={idx}
+              id={props.id}
+              language={language}
+              postUserLanguages={postUserLanguages}
+            ></UserLanguages>
+          );
         })}
         <LanguageSelector
           languages={languages}
