@@ -7,16 +7,22 @@ import UpdateUserForm from "./UpdateUserForm";
 
 const Card = (props) => {
   const languages = props.languages;
-  const { postRequest } = usePost();
+  const postRequest = usePost();
   const [userLanguages, setUserLanguages] = useState([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
 
+  const postUserLanguages = async () => {
+    const data = await postRequest(
+      import.meta.env.VITE_SERVER + "/hw/users/languages",
+      {
+        user_id: props.id,
+      }
+    );
+    setUserLanguages(data);
+  };
+
   useEffect(() => {
-    postRequest(import.meta.env.VITE_SERVER + "/hw/users/languages", {
-      user_id: props.id,
-    })
-      .then((data) => setUserLanguages(data))
-      .catch((error) => console.error(error));
+    postUserLanguages();
   }, [postRequest, props.id]);
 
   return (
@@ -42,7 +48,12 @@ const Card = (props) => {
         {userLanguages.map((language, idx) => {
           return <UserLanguages key={idx} language={language}></UserLanguages>;
         })}
-        <LanguageSelector languages={languages}></LanguageSelector>
+        <LanguageSelector
+          languages={languages}
+          postUserLanguages={postUserLanguages}
+          // getUser={props.getUser}
+          id={props.id}
+        ></LanguageSelector>
       </div>
       {showUpdateForm && (
         <UpdateUserForm

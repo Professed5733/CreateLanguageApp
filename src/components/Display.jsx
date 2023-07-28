@@ -19,9 +19,9 @@ const Display = () => {
     setUser(data);
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   const getLanguages = async () => {
     const data = await fetchLanguages(
@@ -31,7 +31,7 @@ const Display = () => {
   };
 
   useEffect(() => {
-    getLanguages();
+    getUser().then(getLanguages);
   }, []);
 
   return (

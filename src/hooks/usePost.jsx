@@ -17,7 +17,7 @@ const usePost = () => {
     }
   };
 
-  return { postRequest };
+  return postRequest;
 };
 
 export default usePost;
