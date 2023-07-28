@@ -50,6 +50,7 @@ const Display = () => {
               age={item.age}
               country={item.country}
               languages={languages}
+              getUser={getUser}
             ></Card>
           );
         })}

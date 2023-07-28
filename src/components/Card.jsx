@@ -46,10 +46,12 @@ const Card = (props) => {
       </div>
       {showUpdateForm && (
         <UpdateUserForm
+          id={props.id}
           name={props.name}
           age={props.age}
           country={props.country}
           setShowUpdateForm={setShowUpdateForm}
+          getUser={props.getUser}
         ></UpdateUserForm>
       )}
     </div>
