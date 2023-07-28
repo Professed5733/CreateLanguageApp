@@ -4,12 +4,14 @@ import usePost from "../hooks/usePost";
 import UserLanguages from "./UserLanguages";
 import LanguageSelector from "./LanguageSelector";
 import UpdateUserForm from "./UpdateUserForm";
+import useDel from "../hooks/useDel";
 
 const Card = (props) => {
   const languages = props.languages;
   const postRequest = usePost();
   const [userLanguages, setUserLanguages] = useState([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const delUserLanguagesAll = useDel();
 
   const postUserLanguages = async () => {
     const data = await postRequest(
@@ -25,6 +27,23 @@ const Card = (props) => {
     postUserLanguages();
   }, [postRequest, props.id]);
 
+  const removeUserLanguagesAll = async () => {
+    for (const item of userLanguages) {
+      const res = await delUserLanguagesAll(
+        import.meta.env.VITE_SERVER + "/hw/users/languages",
+        {
+          user_id: props.id,
+          language: item,
+        }
+      );
+    }
+    if (res.status === 200) {
+      postUserLanguages();
+    } else {
+      console.log("Error removing language");
+    }
+  };
+
   return (
     <div className={`${styles.Card} container`}>
       <div className="col-sm-2">
@@ -39,7 +58,9 @@ const Card = (props) => {
         <span>Country: </span>
         {props.country}
       </div>
-      <button className="col-sm-1">Delete</button>
+      <button className="col-sm-1" onClick={removeUserLanguagesAll}>
+        Delete
+      </button>
       <button className="col-sm-1" onClick={() => setShowUpdateForm(true)}>
         Update
       </button>
